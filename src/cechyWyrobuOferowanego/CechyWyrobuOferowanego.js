@@ -4,6 +4,7 @@ import { Modal, Button } from 'antd';
 import 'antd/dist/antd.css';
 import { DataProvider } from './DataProvider'
 import {EdycjaListyCech} from './EdycjaListyCech'
+import ListaPozycjiOferty from './ListaPozycjiOferty'
 
 export const CechyWyrobuOferowanego = () => {
     const parsedUrl = new URL(window.location.href)
@@ -76,33 +77,8 @@ export const CechyWyrobuOferowanego = () => {
             <div className="ant-page-header-heading-sub-title">
                 {/* numer rysunku: <span style={{ color: 'black' }}>{product.object_drawing_no}</span> */}
             </div>
-            {/* <div className="ant-page-header-heading-sub-title">
-                użytego w zleceniach: {zleceniaWyrobu.map(
-                    zl => <span style={{ marginLeft: 15 +'px' }, {color: 'black'}}>
-                        {zl.object_index} {zl.title}
-                    </span>)}
-            </div> */}
-            {/* <Layout.Header>Header</Layout.Header> */}
-            {/* <Layout.Content className=""> */}
-                {/* <PageHeader
-                    className="site-page-header"
-                    //onBack={() => null}
-                    title="Cechy wyrobu gotowego"
-                    subTitle={"dotyczy produktu " + idWyrobu}
-                /> */}
-                {/* <Card title="Cechy wyrobu gotowego" bordered={false} style={{ width: 300 }}>
-                    <p>{"dotyczy produktu " + idWyrobu}</p>
-                    <p>Card content</p>
-                    <p>Card content</p>
-                </Card> */}
-                {/* <p>
-                <Descriptions title="User Info">
-                    <Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-                    
-                </Descriptions>
-                </p> */}
-            {/* </Layout.Content> */}
-            <EdycjaListyCech params={params} callbacks={callbacks} />
+            <ListaPozycjiOferty />
+            {/* <EdycjaListyCech params={params} callbacks={callbacks} /> */}
             {/* <div className="ant-page-header-heading-sub-title">
                 <a href="/eoffice/production/cechy_wyrobu_gotowego/cechy_wyrobu_gotowego_wyszukiwarka_treegrid.xml?action=tree_grid_table_init" target="_blank">
                     wyszukiwarka

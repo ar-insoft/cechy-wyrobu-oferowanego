@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "Opis produktu/usługi": {
+      "type": "string"
+    },
+    "Opis c.d.": {
+      "type": "string"
+    },
+    "Pojemność": {
+      "type": "string"
+    },
+    "Produkt": {
+      "type": "string"
+    },
+    "Warunki pracy": {
+      "type": "object",
+      "properties": {
+        "Opis": {
+          "type": "string"
+        },
+        "Typ": {
+          "type": "string"
+        },
+        "Temperatura produktu": {
+          "type": "string"
+        },
+        "uwagi": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Opis",
+        "Typ",
+        "Temperatura produktu",
+        "uwagi"
+      ]
+    },
+    "Wymiary": {
+      "type": "object",
+      "properties": {
+        "Średnica wewnętrzna": {
+          "type": "string"
+        },
+        "Średnica zewnętrzna": {
+          "type": "string"
+        },
+        "Wysokość spustu": {
+          "type": "string"
+        },
+        "Wysokość cylidryczna": {
+          "type": "string"
+        },
+        "Wysokość całkowita": {
+          "type": "string"
+        },
+        "uwagi": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "Średnica wewnętrzna",
+        "Średnica zewnętrzna",
+        "Wysokość spustu",
+        "Wysokość cylidryczna",
+        "Wysokość całkowita",
+        "uwagi"
+      ]
+    },
+    "Grubości ścian": {
+      "type": "object",
+      "properties": {
+        "dennica górna": {
+          "type": "string"
+        },
+        "dennica dolna": {
+          "type": "string"
+        },
+        "płaszcz cylindryczny": {
+          "type": "string"
+        },
+        "płaszcz izolacyjny": {
+          "type": "string"
+        },
+        "płaszcz grzewczy/chłodzący": {
+          "type": "string"
+        },
+        "uwagi": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dennica górna",
+        "dennica dolna",
+        "płaszcz cylindryczny",
+        "płaszcz izolacyjny",
+        "płaszcz grzewczy/chłodzący",
+        "uwagi"
+      ]
+    },
+    "Wyposażenie": {
+      "type": "object",
+      "properties": {
+        "dennica górna": {
+          "type": "string"
+        },
+        "dennica dolna": {
+          "type": "string"
+        },
+        "dennica boczna": {
+          "type": "string"
+        },
+        "uwagi": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dennica górna",
+        "dennica dolna",
+        "dennica boczna",
+        "uwagi"
+      ]
+    }
+  },
+  "required": [
+    "Opis produktu/usługi",
+    "Opis c.d.",
+    "Pojemność",
+    "Produkt",
+    "Warunki pracy",
+    "Wymiary",
+    "Grubości ścian",
+    "Wyposażenie"
+  ]
+}

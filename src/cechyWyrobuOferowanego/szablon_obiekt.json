@@ -1,0 +1,63 @@
+{
+	"Opis produktu/usługi": " Zbiornik do rozpuszczania czekolad z dodatkami",
+	"Opis c.d.": "miejsce na opis szczegółowy zbiornika/usługi",
+	"Pojemność": "90  l",
+	"Produkt": " czekolada",
+	"Warunki pracy": {
+		"Opis": " miejsce na opis warunków pracy",
+		"Typ": "bezciśnieniowy",
+		" Temperatura produktu": " 30-50 °C",
+		" uwagi": ""
+	},
+	"Wymiary": {
+		" Średnica wewnętrzna": " 750 mm",
+		" Średnica zewnętrzna": " 910 mm",
+		" Wysokość spustu": " 600 mm",
+		" Wysokość cylidryczna": " 150 mm",
+		" Wysokość całkowita": " 640 mm",
+		" uwagi": ""
+	},
+	"Grubości ścian": {
+		" dennica górna": " 3 mm",
+		" dennica dolna": " 3 mm",
+		" płaszcz cylindryczny": " 3 mm",
+		" płaszcz izolacyjny": " 2 mm",
+		" płaszcz grzewczy/chłodzący": " 2,5 mm",
+		" uwagi": ""
+	},
+	"Wyposażenie": {
+		" dennica górna": " płaska",
+		" dennica dolna": " stożkowa 140 °",
+		" dennica boczna": "",
+		" dennica boczna2": "",
+		" uwagi": "",
+		" Króćce": [
+			" właz",
+			"  króciec x",
+			"  króciec y",
+			"  króciec x",
+			"  króciec y"
+		],
+		" Wposażenie pozostałe barierka": "",
+		"  drabina": ""
+	},
+	"Płaszcz grzewczy/chłodzący": {
+		" miejsce na opis typu na płaszczu cylindrycznym i dennicy dolnej": "",
+		" uwagi": ""
+	},
+	"Izolacja": {
+		" miejsce na opis typu 80 mm": "",
+		" uwagi": ""
+	},
+	"Mieszadło": {
+		" Typ": " ramowe ze skrobakami",
+		" Moc": "  kW",
+		" Prędkość": "  rpm",
+		" uwagi położenie mieszadła": ""
+	},
+	"Posadowienie": " na łapach",
+	"Wykonanie": "",
+	"Odbiór": " UDT / TUV",
+	"Zakres dokumentacji": "",
+	"Uwagi": ""
+}
