@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { List, Form, Input, Button, InputNumber, Select, Radio, Avatar } from 'antd';
 import testoweDane from './testowe_cechy_wyrobu.json'
 
-const data = testoweDane
-
 const ListaPozycjiOferty = ({ params, callbacks }) => {
+    const { dodajNowaPozycje } = callbacks
+    const data = testoweDane
 
     return (
         <div style={{ width: 80 + '%' }}>
@@ -23,7 +23,7 @@ const ListaPozycjiOferty = ({ params, callbacks }) => {
                     </List.Item>
                 )}
             />
-            <Button >Dodaj</Button>
+            <Button onClick={() => dodajNowaPozycje(-1)}>Dodaj</Button>
         </div>
     )
 }

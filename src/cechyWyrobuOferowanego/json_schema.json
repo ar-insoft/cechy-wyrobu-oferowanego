@@ -1,136 +1,156 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "type": "object",
-  "properties": {
-    "Opis produktu/usługi": {
-      "type": "string"
-    },
-    "Opis c.d.": {
-      "type": "string"
-    },
-    "Pojemność": {
-      "type": "string"
-    },
-    "Produkt": {
-      "type": "string"
-    },
-    "Warunki pracy": {
-      "type": "object",
-      "properties": {
-        "Opis": {
-          "type": "string"
-        },
-        "Typ": {
-          "type": "string"
-        },
-        "Temperatura produktu": {
-          "type": "string"
-        },
-        "uwagi": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "Opis",
-        "Typ",
-        "Temperatura produktu",
-        "uwagi"
-      ]
-    },
-    "Wymiary": {
-      "type": "object",
-      "properties": {
-        "Średnica wewnętrzna": {
-          "type": "string"
-        },
-        "Średnica zewnętrzna": {
-          "type": "string"
-        },
-        "Wysokość spustu": {
-          "type": "string"
-        },
-        "Wysokość cylidryczna": {
-          "type": "string"
-        },
-        "Wysokość całkowita": {
-          "type": "string"
-        },
-        "uwagi": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "Średnica wewnętrzna",
-        "Średnica zewnętrzna",
-        "Wysokość spustu",
-        "Wysokość cylidryczna",
-        "Wysokość całkowita",
-        "uwagi"
-      ]
-    },
-    "Grubości ścian": {
-      "type": "object",
-      "properties": {
-        "dennica górna": {
-          "type": "string"
-        },
-        "dennica dolna": {
-          "type": "string"
-        },
-        "płaszcz cylindryczny": {
-          "type": "string"
-        },
-        "płaszcz izolacyjny": {
-          "type": "string"
-        },
-        "płaszcz grzewczy/chłodzący": {
-          "type": "string"
-        },
-        "uwagi": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dennica górna",
-        "dennica dolna",
-        "płaszcz cylindryczny",
-        "płaszcz izolacyjny",
-        "płaszcz grzewczy/chłodzący",
-        "uwagi"
-      ]
-    },
-    "Wyposażenie": {
-      "type": "object",
-      "properties": {
-        "dennica górna": {
-          "type": "string"
-        },
-        "dennica dolna": {
-          "type": "string"
-        },
-        "dennica boczna": {
-          "type": "string"
-        },
-        "uwagi": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "dennica górna",
-        "dennica dolna",
-        "dennica boczna",
-        "uwagi"
-      ]
-    }
-  },
-  "required": [
-    "Opis produktu/usługi",
-    "Opis c.d.",
-    "Pojemność",
-    "Produkt",
-    "Warunki pracy",
-    "Wymiary",
-    "Grubości ścian",
-    "Wyposażenie"
-  ]
+	"type": "object",
+	"properties": {
+		"opisProduktuUslugi": {
+			"title": "Opis produktu/usługi",
+			"description": "Opis produktu/usługi",
+			"type": "string"
+		},
+		"opisCd": {
+			"title": "Opis c.d.",
+			"type": "string"
+		},
+		"pojemnosc": {
+			"title": "Pojemność [l]",
+			"type": "string"
+		},
+		"produkt": {
+			"title": "Produkt",
+			"type": "string"
+		},
+		"warunkiPracy": {
+			"title": "Warunki pracy",
+			"type": "object",
+			"properties": {
+				"warunkiPracyOpis": {
+					"title": "Opis warunków pracy",
+					"type": "string"
+				},
+				"warunkiPracyRodzaj": {
+					"title": "Rodzaj",
+					"type": "string"
+				},
+				"warunkiPracyTemperaturaProduktu": {
+					"title": "Temperatura produktu [°C]",
+					"type": "string"
+				},
+				"warunkiPracyUwagi": {
+					"title": "Uwagi",
+					"type": "string"
+				}
+			},
+			"required": []
+		},
+		"wymiary": {
+			"title": "Wymiary",
+			"type": "object",
+			"properties": {
+				"wymiarySrednicaWewnetrzna": {
+					"title": "Średnica wewnętrzna [mm]",
+					"type": "string"
+				},
+				"wymiarySrednicaZewnetrzna": {
+					"title": "Średnica zewnętrzna [mm]",
+					"type": "string"
+				},
+				"wymiaryWysokoscSpustu": {
+					"title": "Wysokość spustu [mm]",
+					"type": "string"
+				},
+				"wymiaryWysokoscCylidryczna": {
+					"title": "Wysokość cylidryczna [mm]",
+					"type": "string"
+				},
+				"wymiaryWysokoscCalkowita": {
+					"title": "Wysokość całkowita [mm]",
+					"type": "string"
+				},
+				"wymiaryUwagi": {
+					"title": "Uwagi",
+					"type": "string"
+				}
+			},
+			"required": []
+		},
+		"grubosciScian": {
+			"title": "Grubości ścian",
+			"type": "object",
+			"properties": {
+				"grubosciScianDennicaGorna": {
+					"title": "Dennica górna [mm]",
+					"type": "string"
+				},
+				"grubosciScianDennicaDolna": {
+					"title": "Dennica dolna [mm]",
+					"type": "string"
+				},
+				"grubosciScianPlaszczCylindryczny": {
+					"title": "Płaszcz cylindryczny [mm]",
+					"type": "string"
+				},
+				"grubosciScianPlaszczIzolacyjny": {
+					"title": "Płaszcz izolacyjny [mm]",
+					"type": "string"
+				},
+				"grubosciScianPlaszczGrzewczyChlodzacy": {
+					"title": "Płaszcz grzewczy/chłodzący [mm]",
+					"type": "string"
+				},
+				"grubosciScianUwagi": {
+					"title": "Uwagi",
+					"type": "string"
+				}
+			},
+			"required": []
+		},
+		"wyposazenie": {
+			"title": "Wyposażenie",
+			"type": "object",
+			"properties": {
+				"wyposazenieDennicaGorna": {
+					"title": "Dennica górna",
+					"type": "string"
+				},
+				"wyposazenieDennicaDolna": {
+					"title": "Dennica dolna",
+					"type": "string"
+				},
+				"wyposazenieDennicaBoczna": {
+					"title": "Dennica boczna",
+					"type": "string"
+				},
+				"wyposazenieUwagi": {
+					"title": "Uwagi",
+					"type": "string"
+				},
+				"wyposazenieKrocce": {
+					"title": "Króćce",
+					"type": "string"
+				},
+				"wyposazenieWyposazeniePozostale": {
+					"title": "Wyposażenie pozostałe",
+					"type": "string"
+				}
+			},
+			"required": []
+		},
+		"plaszczGrzewczyChlodzacy": {
+			"title": "Płaszcz grzewczy/chłodzący",
+			"type": "object",
+			"properties": {
+"plaszczGrzewczyChlodzacyOpisTypu": {
+ "title": "Opis typu",
+ "type": "string"
+ },
+ "plaszczGrzewczyChlodzacyTyp": {
+ "title": "Typ",
+ "type": "string"
+ }
+      }
+		}
+	},
+	"required": [
+		"Opis produktu/usługi",
+		"Opis c.d."
+	]
 }

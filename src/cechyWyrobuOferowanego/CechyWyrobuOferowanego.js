@@ -5,10 +5,16 @@ import 'antd/dist/antd.css';
 import { DataProvider } from './DataProvider'
 import {EdycjaListyCech} from './EdycjaListyCech'
 import ListaPozycjiOferty from './ListaPozycjiOferty'
+import TabelaPozycjiOferty from './TabelaPozycjiOferty'
+import PozycjaOfertyEdit from './PozycjaOfertyEdit'
+import testoweDane from './testowe_cechy_wyrobu.json'
+import { GuestFormBasic } from '../uniformExample/AutoForm'
+import SchemaToAntForm from '../schemaToAntForm/SchemaToAntForm'
+import SchemaGenerator from '../schemaToAntForm/SchemaGenerator'
 
 export const CechyWyrobuOferowanego = () => {
     const parsedUrl = new URL(window.location.href)
-    const idWyrobu = parsedUrl.searchParams.get("id") || "test"
+    const idOferty = parsedUrl.searchParams.get("offer_id") || "test"
     const [isLoading, setIsLoading] = useState(false)
 
     const [definicjeCech, setDefinicjeCech] = useState([])
@@ -16,20 +22,27 @@ export const CechyWyrobuOferowanego = () => {
     const [zleceniaWyrobu, setZleceniaWyrobu] = useState([])
     const [cechyWyrobu, setCechyWyrobu] = useState([])
 
+
+    //////////////////////
+
+    const [offer, setOffer] = useState({})
+    const [listaPozycji, setListaPozycji] = useState([])
+    const [idEdytowanego, setIdEdytowanego] = useState(0)
+    
     const [zapisanoDane, setZapisanoDane] = useState(0)
 
     useEffect(() => {
         setIsLoading(true)
         DataProvider.pobierzCechyWyrobu(
             {
-                idWyrobu: idWyrobu,
+                idWyrobu: idOferty,
             },
             fromServer => {
                 console.log('pobierzCechyWyrobu fromServer', fromServer)
-                setDefinicjeCech(fromServer.definicjeCech)
-                setProduct(fromServer.product)
-                setZleceniaWyrobu(fromServer.zleceniaWyrobu)
-                setCechyWyrobu(fromServer.cechyWyrobu)
+                //setDefinicjeCech(fromServer.definicjeCech)
+                setOffer(fromServer.offer)
+                //setZleceniaWyrobu(fromServer.zleceniaWyrobu)
+                setListaPozycji(fromServer.cechyWyrobu)
                 setIsLoading(false)
             }, error => {
                 console.log('pobierzCechyWyrobu error', error)
@@ -39,11 +52,13 @@ export const CechyWyrobuOferowanego = () => {
     }, [])
 
     const callbacks = {
-        zapiszNaSerwerzeCechyWyrobu: (cechyWyrobu) => {
+        zapiszNaSerwerzeCechyWyrobu: (cechyOferty) => {
+            setIsLoading(true)
             DataProvider.wyslijNaSerwerCechyWyrobu(
-                idWyrobu, cechyWyrobu, {},
+                idOferty, cechyOferty, {},
                 fromServer => {
                     console.log('EdycjaListyCech fromServer', fromServer)
+                    setListaPozycji([...listaPozycji, fromServer.zapisanaCechaWyrobu])
                     setIsLoading(false)
                     setZapisanoDane(zapisanoDane+1)
                 }, error => {
@@ -56,28 +71,61 @@ export const CechyWyrobuOferowanego = () => {
                     })
                 }
             )
-        } 
+        },
+        dodajNowaPozycje: () => {
+            setIdEdytowanego(-1)
+        },
+        submitEdycjePozycji: (pozycja) => {
+            console.log('submitEdycjePozycji', pozycja)
+            callbacks.zapiszNaSerwerzeCechyWyrobu(pozycja)
+
+            //pozycja.id = -2
+            //setListaPozycji([...listaPozycji, pozycja])
+            setIdEdytowanego(0)
+        },
+        anulujEdycjePozycji: (pozycja) => {
+            setIdEdytowanego(0)
+        },
     }
     const params = {
         isLoading,
-        idWyrobu,
+        idWyrobu: idOferty,
         definicjeCech,
         product,
         zleceniaWyrobu,
         cechyWyrobu,
         zapisanoDane,
+
+        listaPozycji,
     }
 
     return (
-        <div className="ant-layout main" data-wyrob-id={idWyrobu}>
+        <div className="ant-layout main" data-wyrob-id={idOferty}>
             <div className="ant-page-header-heading-title">Cechy wyrobu oferowanego</div>
             <div className="ant-page-header-heading-sub-title">
-                dotyczy oferty: <span style={{ color: 'black' }}>{product.object_index} {product.title}</span>
+                dotyczy oferty: <span style={{ color: 'black' }}>{offer?.object_index} {offer?.title}</span>
             </div>
             <div className="ant-page-header-heading-sub-title">
                 {/* numer rysunku: <span style={{ color: 'black' }}>{product.object_drawing_no}</span> */}
             </div>
-            <ListaPozycjiOferty />
+            {
+                idEdytowanego === 0
+                &&
+                <TabelaPozycjiOferty params={params} callbacks={callbacks} />
+            }
+            {
+                idEdytowanego !== 0
+                &&
+                <div style={{ width: 80 + '%' }}>
+                    < PozycjaOfertyEdit params={params} callbacks={callbacks} />
+                    {/* <GuestFormBasic params={params} callbacks={callbacks} /> */}
+                </div>
+            }
+            <div style={{ width: 80 + '%' }}>
+                {/* <SchemaToAntForm /> */}
+                <SchemaGenerator />
+            </div>
+            
             {/* <EdycjaListyCech params={params} callbacks={callbacks} /> */}
             {/* <div className="ant-page-header-heading-sub-title">
                 <a href="/eoffice/production/cechy_wyrobu_gotowego/cechy_wyrobu_gotowego_wyszukiwarka_treegrid.xml?action=tree_grid_table_init" target="_blank">
@@ -102,16 +150,13 @@ const ZapisanoDane = ({ params, callbacks }) => {
     return (
         <>
             <Modal
-                visible={visible}
+                show={visible}
                 title="Zapisano"
                 onOk={handleCancel}
                 onCancel={handleCancel}
                 footer={[
                     <Button key="back" onClick={handleCancel}>
                         Kontynuj edycję
-                    </Button>,
-                            <Button key="submit" type="primary" loading={isLoading} onClick={handleClose}>
-                                Zamknij
                     </Button>,
                         ]}
                     >

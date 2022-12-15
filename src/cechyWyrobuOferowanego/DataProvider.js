@@ -1,5 +1,5 @@
 export const consts = {
-    ENDPOINT_URL: '/rest/cechy_wyrobu_gotowego',
+    ENDPOINT_URL: '/rest/cechy_wyrobu_oferowanego',
 }
 
 export const DataProvider = {
@@ -9,7 +9,7 @@ export const DataProvider = {
         //const doWyslania = Object.assign({}, { ...additionalFields })
         //const doWyslaniaJson = JSON.stringify(doWyslania)
 
-        fetch(consts.ENDPOINT_URL + '?id=' + idWyrobu, { //+ '?action=zlecenie_obiekty_harmonogramowania&id=' + idWyrobu
+        fetch(consts.ENDPOINT_URL + '?offer_id=' + idWyrobu, { //+ '?action=zlecenie_obiekty_harmonogramowania&id=' + idWyrobu
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' //'Content-Type': 'application/json' 
@@ -34,13 +34,13 @@ export const DataProvider = {
             .catch(error => errorHandler(error))
     },
 
-    wyslijNaSerwerCechyWyrobu: (idWyrobu, cechyWyrobu, additionalFields, promiseHandler, errorHandler) => {
+    wyslijNaSerwerCechyWyrobu: (idOffer, cechyWyrobu, additionalFields, promiseHandler, errorHandler) => {
         const doWyslania = Object.assign({ ...cechyWyrobu }, { ...additionalFields })
         //delete doWyslania.employee
         //delete doWyslania.kartaProgramu
         const doWyslaniaJson = JSON.stringify(doWyslania)
 
-        fetch(consts.ENDPOINT_URL + '?id=' + idWyrobu, {
+        fetch(consts.ENDPOINT_URL + '?offer_id=' + idOffer, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' //'Content-Type': 'application/json' 
