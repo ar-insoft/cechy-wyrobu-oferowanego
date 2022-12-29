@@ -5,13 +5,26 @@ const { Column, ColumnGroup } = Table;
 const data = []
 const TabelaPozycjiOferty = ({ params, callbacks }) => {
     const { listaPozycji } = params
-    const { dodajNowaPozycje } = callbacks
+    const { dodajNowaPozycje, edytujPozycje } = callbacks
 
     const listaZKeys = listaPozycji.map(poz => {poz.key = poz.id; return poz})
 
     return (
         <>
-            <Table dataSource={listaPozycji} bordered>
+            <Table dataSource={listaPozycji} bordered
+              onRow={(record, rowIndex) => {
+                return {
+                  onClick: (event) => { 
+                    //console.log('onRow.onClick',rowIndex, record)
+                    edytujPozycje(record.id)
+                },
+                  onDoubleClick: (event) => {}, // double click row
+                  onContextMenu: (event) => {}, // right button click row
+                  onMouseEnter: (event) => {}, // mouse enter row
+                  onMouseLeave: (event) => {}, // mouse leave row
+                };
+              }}
+              >
             <Column title="Opis produktu/usługi" dataIndex="opisProduktuUslugi" key="opisProduktuUslugi" />
             <Column title="Opis c.d." dataIndex="opisCd" key="opisCd" />
             <Column title="Pojemność [l]" dataIndex="pojemnosc" key="pojemnosc" />

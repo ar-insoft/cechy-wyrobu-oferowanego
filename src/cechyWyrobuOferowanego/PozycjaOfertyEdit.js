@@ -13,6 +13,9 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
         },
     };
 
+    const { idEdytowanego, listaPozycji } = params
+    const pozycja = listaPozycji.find(element => element.id === idEdytowanego)
+    const initialValues = pozycja ? pozycja : {}
     const formRef = useRef()
     const { TextArea } = Input;
 
@@ -28,7 +31,7 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
     return (
         <Form ref={formRef} size="small" 
             {...layout}
-            initialValues={{ remember: true }}
+            initialValues={{ ...initialValues, remember: true }}
             onFinish={onFinish}
             //onFinishFailed={onFinishFailed}
         >
@@ -114,9 +117,9 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
             <Form.Item label="Króćce" name="wyposazenieKrocce" key="wyposazenieKrocce">
                 <Input allowClear />
             </Form.Item>
-            <Form.Item label="Wyposażenie pozostałe" name="wyposazenieWyposazeniePozostale" key="wyposazenieWyposazeniePozostale">
+            {/* <Form.Item label="Wyposażenie pozostałe" name="wyposazenieWyposazeniePozostale" key="wyposazenieWyposazeniePozostale">
                 <Input allowClear />
-            </Form.Item>
+            </Form.Item> */}
 
             <Divider >Płaszcz grzewczy/chłodzący</Divider>
             <Form.Item label="Opis typu" name="plaszczGrzewczyChlodzacyOpisTypu" key="plaszczGrzewczyChlodzacyOpisTypu">

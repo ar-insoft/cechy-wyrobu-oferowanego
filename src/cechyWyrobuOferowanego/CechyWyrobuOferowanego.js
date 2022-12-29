@@ -75,6 +75,10 @@ export const CechyWyrobuOferowanego = () => {
         dodajNowaPozycje: () => {
             setIdEdytowanego(-1)
         },
+        edytujPozycje: (id) => {
+            //console.log('edytujPozycje', id)
+            setIdEdytowanego(id)
+        },
         submitEdycjePozycji: (pozycja) => {
             console.log('submitEdycjePozycji', pozycja)
             callbacks.zapiszNaSerwerzeCechyWyrobu(pozycja)
@@ -97,6 +101,7 @@ export const CechyWyrobuOferowanego = () => {
         zapisanoDane,
 
         listaPozycji,
+        idEdytowanego,
     }
 
     return (
@@ -123,7 +128,7 @@ export const CechyWyrobuOferowanego = () => {
             }
             <div style={{ width: 80 + '%' }}>
                 {/* <SchemaToAntForm /> */}
-                <SchemaGenerator />
+                {/* <SchemaGenerator /> */}
             </div>
             
             {/* <EdycjaListyCech params={params} callbacks={callbacks} /> */}

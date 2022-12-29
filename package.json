@@ -24,8 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "send-build-to-proedims": "send-build-to-proedims",
-    "prebuild": "standard-version"
+    "send-build-to-proedims": "send-build-to-proedims"
   },
   "eslintConfig": {
     "extends": [
