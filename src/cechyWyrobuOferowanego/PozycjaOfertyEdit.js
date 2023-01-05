@@ -20,8 +20,10 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
     const { TextArea } = Input;
 
     const onFinish = (values) => {
-        console.log('PozycjaOfertyEdit Success:', values);
-        callbacks.submitEdycjePozycji(values)
+        const initialValues = pozycja ? pozycja : {}
+        const doWyslania = Object.assign({}, initialValues, values)
+        //console.log('PozycjaOfertyEdit Success doWyslania:', doWyslania);
+        callbacks.submitEdycjePozycji(doWyslania)
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -58,7 +60,7 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
                 <Input allowClear />
             </Form.Item>
             <Form.Item label="Uwagi" name="warunkiPracyUwagi" key="warunkiPracyUwagi">
-                <Input allowClear />
+                <TextArea rows={2} allowClear />
             </Form.Item>
             <Divider >Wymiary</Divider>
             <Form.Item label="Średnica wewnętrzna [mm]" name="wymiarySrednicaWewnetrzna" key="wymiarySrednicaWewnetrzna">
@@ -77,7 +79,7 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
                 <Input allowClear />
             </Form.Item>
             <Form.Item label="Uwagi" name="wymiaryUwagi" key="wymiaryUwagi">
-                <Input allowClear />
+                <TextArea rows={2} allowClear />
             </Form.Item>
             <Divider >Grubości ścian</Divider>
             <Form.Item label="Dennica górna [mm]" name="grubosciScianDennicaGorna" key="grubosciScianDennicaGorna">
@@ -96,7 +98,7 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
                 <Input allowClear />
             </Form.Item>
             <Form.Item label="Uwagi" name="grubosciScianUwagi" key="grubosciScianUwagi">
-                <Input allowClear />
+                <TextArea rows={2} allowClear />
             </Form.Item>
             <Divider >Wyposażenie</Divider>
             <Form.Item label="Dennica górna" name="wyposazenieDennicaGorna" key="wyposazenieDennicaGorna">
@@ -109,13 +111,13 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
                 <Input allowClear />
             </Form.Item>
             <Form.Item label="Uwagi" name="wyposazenieUwagi" key="wyposazenieUwagi">
-                <Input allowClear />
+                <TextArea rows={2} allowClear />
             </Form.Item>
             <Form.Item label="Wyposażenie pozostałe" name="wyposazenieWyposazeniePozostale" key="wyposazenieWyposazeniePozostale">
                 <Input allowClear />
             </Form.Item>
             <Form.Item label="Króćce" name="wyposazenieKrocce" key="wyposazenieKrocce">
-                <Input allowClear />
+                <TextArea rows={2} allowClear />
             </Form.Item>
             {/* <Form.Item label="Wyposażenie pozostałe" name="wyposazenieWyposazeniePozostale" key="wyposazenieWyposazeniePozostale">
                 <Input allowClear />
@@ -125,17 +127,50 @@ const PozycjaOfertyEdit = ({ params, callbacks }) => {
             <Form.Item label="Opis typu" name="plaszczGrzewczyChlodzacyOpisTypu" key="plaszczGrzewczyChlodzacyOpisTypu">
                 <Input allowClear />
             </Form.Item>
-            {/* <Form.Item label="Rodzaj" name="warunkiPracyRodzaj" key="warunkiPracyRodzaj">
+            <Form.Item label="Typ" name="plaszczGrzewczyChlodzacyTyp" key="plaszczGrzewczyChlodzacyTyp">
                 <Input allowClear />
-            </Form.Item> */}
-            {/* 
-            <ColumnGroup title="Płaszcz grzewczy/chłodzący">
-                <Column title="Opis typu" dataIndex="plaszczGrzewczyChlodzacyOpisTypu" key="plaszczGrzewczyChlodzacyOpisTypu" />
-                <Column title="Rodzaj" dataIndex="warunkiPracyRodzaj" key="warunkiPracyRodzaj" />
-                <Column title="Rodzaj" dataIndex="warunkiPracyRodzaj" key="warunkiPracyRodzaj" />
-            </ColumnGroup>
-            
-             */}
+            </Form.Item><Form.Item label="Uwagi" name="plaszczGrzewczyChlodzacyUwagi" key="plaszczGrzewczyChlodzacyUwagi">
+                <TextArea rows={2} allowClear />
+            </Form.Item>
+            <Divider >Izolacja</Divider>
+            <Form.Item label="Opis typu" name="izolacjaOpisTypu" key="izolacjaOpisTypu">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Grubość" name="izolacjaGrubosc" key="izolacjaGrubosc">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Uwagi" name="izolacjaUwagi" key="izolacjaUwagi">
+                <TextArea rows={2} allowClear />
+            </Form.Item>
+            <Divider >Mieszadło</Divider>
+            <Form.Item label="Typ" name="mieszadloTyp" key="mieszadloTyp">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Moc [kW]" name="mieszadloMoc" key="mieszadloMoc">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Prędkość [rpm]" name="mieszadloPredkosc" key="mieszadloPredkosc">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Rodzaj" name="mieszadloUwagi" key="mieszadloUwagi">
+                <Input allowClear />
+            </Form.Item>
+           <Divider ></Divider>
+            <Form.Item label="Posadowienie" name="posadowienie" key="posadowienie">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Wykonanie" name="wykonanie" key="wykonanie">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Odbiór" name="odbior" key="odbior">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Zakres dokumentacji" name="zakresDokumentacji" key="zakresDokumentacji">
+                <Input allowClear />
+            </Form.Item>
+            <Form.Item label="Uwagi" name="uwagi" key="uwagi">
+                <Input allowClear />
+            </Form.Item>
 
             <Form.Item {...tailLayout}>
                 <Button type="primary" htmlType="submit" disabled={false}>

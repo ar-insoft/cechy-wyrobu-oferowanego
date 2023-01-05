@@ -17,10 +17,10 @@ export const CechyWyrobuOferowanego = () => {
     const idOferty = parsedUrl.searchParams.get("offer_id") || "test"
     const [isLoading, setIsLoading] = useState(false)
 
-    const [definicjeCech, setDefinicjeCech] = useState([])
-    const [product, setProduct] = useState({})
-    const [zleceniaWyrobu, setZleceniaWyrobu] = useState([])
-    const [cechyWyrobu, setCechyWyrobu] = useState([])
+    // const [definicjeCech, setDefinicjeCech] = useState([])
+    // const [product, setProduct] = useState({})
+    // const [zleceniaWyrobu, setZleceniaWyrobu] = useState([])
+    // const [cechyWyrobu, setCechyWyrobu] = useState([])
 
 
     //////////////////////
@@ -38,10 +38,8 @@ export const CechyWyrobuOferowanego = () => {
                 idWyrobu: idOferty,
             },
             fromServer => {
-                console.log('pobierzCechyWyrobu fromServer', fromServer)
-                //setDefinicjeCech(fromServer.definicjeCech)
+                //console.log('pobierzCechyWyrobu fromServer', fromServer)
                 setOffer(fromServer.offer)
-                //setZleceniaWyrobu(fromServer.zleceniaWyrobu)
                 setListaPozycji(fromServer.cechyWyrobu)
                 setIsLoading(false)
             }, error => {
@@ -57,8 +55,18 @@ export const CechyWyrobuOferowanego = () => {
             DataProvider.wyslijNaSerwerCechyWyrobu(
                 idOferty, cechyOferty, {},
                 fromServer => {
-                    console.log('EdycjaListyCech fromServer', fromServer)
-                    setListaPozycji([...listaPozycji, fromServer.zapisanaCechaWyrobu])
+                    //console.log('EdycjaListyCech fromServer', fromServer)
+                    if (!fromServer?.zapisano) throw new Error('Błąd zapisu!')
+                    const zapisanaCechaWyrobu = fromServer.zapisanaCechaWyrobu
+                    if (listaPozycji.find(poz => poz.id == zapisanaCechaWyrobu.id)) {
+                        setListaPozycji(listaPozycji.map(poz => {
+                            if (poz.id == zapisanaCechaWyrobu.id) return zapisanaCechaWyrobu
+                            else return poz
+                            }))
+                    } else {
+                        setListaPozycji([...listaPozycji, fromServer.zapisanaCechaWyrobu])
+                    }
+
                     setIsLoading(false)
                     setZapisanoDane(zapisanoDane+1)
                 }, error => {
@@ -80,7 +88,7 @@ export const CechyWyrobuOferowanego = () => {
             setIdEdytowanego(id)
         },
         submitEdycjePozycji: (pozycja) => {
-            console.log('submitEdycjePozycji', pozycja)
+            //console.log('submitEdycjePozycji', pozycja)
             callbacks.zapiszNaSerwerzeCechyWyrobu(pozycja)
 
             //pozycja.id = -2
@@ -94,10 +102,10 @@ export const CechyWyrobuOferowanego = () => {
     const params = {
         isLoading,
         idWyrobu: idOferty,
-        definicjeCech,
-        product,
-        zleceniaWyrobu,
-        cechyWyrobu,
+        // definicjeCech,
+        // product,
+        // zleceniaWyrobu,
+        // cechyWyrobu,
         zapisanoDane,
 
         listaPozycji,

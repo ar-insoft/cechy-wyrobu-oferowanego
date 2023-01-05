@@ -7,11 +7,12 @@ const TabelaPozycjiOferty = ({ params, callbacks }) => {
     const { listaPozycji } = params
     const { dodajNowaPozycje, edytujPozycje } = callbacks
 
-    const listaZKeys = listaPozycji.map(poz => {poz.key = poz.id; return poz})
+    const listaZKeys = listaPozycji.filter(poz => poz.id)
+        .map(poz => {poz.key = poz.id; return poz})
 
     return (
         <>
-            <Table dataSource={listaPozycji} bordered
+            <Table dataSource={listaZKeys} bordered
               onRow={(record, rowIndex) => {
                 return {
                   onClick: (event) => { 
@@ -58,7 +59,22 @@ const TabelaPozycjiOferty = ({ params, callbacks }) => {
                 <Column title="Typ" dataIndex="plaszczGrzewczyChlodzacyTyp" key="plaszczGrzewczyChlodzacyTyp" />
                 {/* <Column title="Rodzaj" dataIndex="warunkiPracyRodzaj" key="warunkiPracyRodzaj" /> */}
             </ColumnGroup>
-
+                <ColumnGroup title="Izolacja">
+                    <Column title="Opis typu" dataIndex="izolacjaOpisTypu" key="izolacjaOpisTypu" />
+                    <Column title="Grubość" dataIndex="izolacjaGrubosc" key="izolacjaGrubosc" />
+                    <Column title="Uwagi" dataIndex="izolacjaUwagi" key="izolacjaUwagi" />
+                </ColumnGroup>
+                <ColumnGroup title="Mieszadło">
+                    <Column title="Typ" dataIndex="mieszadloTyp" key="mieszadloTyp" />
+                    <Column title="Moc [kW]" dataIndex="mieszadloMoc" key="mieszadloMoc" />
+                    <Column title="Prędkość [rpm]" dataIndex="mieszadloPredkosc" key="mieszadloPredkosc" />
+                    <Column title="Rodzaj" dataIndex="warunkiPracyRodzaj" key="warunkiPracyRodzaj" />
+                </ColumnGroup>
+                <Column title="Posadowienie" dataIndex="posadowienie" key="posadowienie" />
+                <Column title="Wykonanie" dataIndex="wykonanie" key="wykonanie" />
+                <Column title="Odbiór" dataIndex="odbior" key="odbior" />
+                <Column title="Zakres dokumentacji" dataIndex="zakresDokumentacji" key="zakresDokumentacji" />
+                <Column title="Uwagi" dataIndex="uwagi" key="uwagi" />
         </Table>
         <Button onClick={() => dodajNowaPozycje(-1)}>Dodaj</Button>
         </>

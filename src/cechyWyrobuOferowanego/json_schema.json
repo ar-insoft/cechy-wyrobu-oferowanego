@@ -145,9 +145,74 @@
  "plaszczGrzewczyChlodzacyTyp": {
  "title": "Typ",
  "type": "string"
+ },
+ "plaszczGrzewczyChlodzacyUwagi": {
+ "title": "Uwagi",
+ "type": "string"
+ }
+
+      }
+		},
+				"izolacja": {
+			"title": "Izolacja",
+			"type": "object",
+			"properties": {
+				"izolacjaOpisTypu": {
+ "title": "Opis typu",
+ "type": "string"
+ },
+"izolacjaGrubosc": {
+ "title": "Grubość",
+ "type": "string"
+ },
+ "izolacjaUwagi": {
+ "title": "Uwagi",
+ "type": "string"
  }
       }
-		}
+		},
+				"mieszadlo": {
+			"title": "Mieszadło",
+			"type": "object",
+			"properties": {
+"mieszadloTyp": {
+ "title": "Typ",
+ "type": "string"
+ },
+"mieszadloMoc": {
+ "title": "Moc [kW]",
+ "type": "string"
+ },
+ "mieszadloPredkosc": {
+ "title": "Prędkość [rpm]",
+ "type": "string"
+ },
+ "mieszadloUwagi": {
+ "title": "Uwagi",
+ "type": "string"
+ }
+      }
+		},
+"posadowienie": {
+ "title": "Posadowienie",
+ "type": "string"
+ },
+ "wykonanie": {
+ "title": "Wykonanie",
+ "type": "string"
+ },
+ "odbior": {
+ "title": "Odbiór",
+ "type": "string"
+ },
+ "zakresDokumentacji": {
+ "title": "Zakres dokumentacji",
+ "type": "string"
+ },
+ "uwagi": {
+ "title": "Uwagi",
+ "type": "string"
+ }
 	},
 	"required": [
 		"Opis produktu/usługi",
